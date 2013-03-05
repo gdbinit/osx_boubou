@@ -1,0 +1,43 @@
+               .-')      ) (`-.           ,-..-. .-')                           .-. .-')                            
+              ( OO ).     ( OO ).         / /\  ( OO )                          \  ( OO )                           
+ .-'),-----. (_)---\_)   (_/.  \_)-.     / /  ;-----.\  .-'),-----.  ,--. ,--.   ;-----.\  .-'),-----.  ,--. ,--.   
+( OO'  .-.  '/    _ |     \  `.'  /     / /   | .-.  | ( OO'  .-.  ' |  | |  |   | .-.  | ( OO'  .-.  ' |  | |  |   
+/   |  | |  |\  :` `.      \     /\    / /    | '-' /_)/   |  | |  | |  | | .-') | '-' /_)/   |  | |  | |  | | .-') 
+\_) |  |\|  | '..`''.)      \   \ |   / /     | .-. `. \_) |  |\|  | |  |_|( OO )| .-. `. \_) |  |\|  | |  |_|( OO )
+  \ |  | |  |.-._)   \     .'    \_) / /      | |  \  |  \ |  | |  | |  | | `-' /| |  \  |  \ |  | |  | |  | | `-' /
+   `'  '-'  '\       /.-. /  .'.  \ / /       | '--'  /   `'  '-'  '('  '-'(_.-' | '--'  /   `'  '-'  '('  '-'(_.-' 
+     `-----'  `-----' `-''--'   '--'`-'       `------'      `-----'   `-----'    `------'      `-----'   `-----'    
+A mach-o virus infector
+
+Copyright (c) fG!, 2012,2013 - reverser@put.as - http://reverse.put.as
+All rights reserved.
+
+This is the sample code for OS.X/Boubou presented at Hitcon'12 in Taipei.
+
+Does it job by modifying the Mach-O header of the target and adding a new library command.
+The library contains the "malware" payload and can be used for different purposes, such as
+stealing information or backdoor without using traditional LaunchDaemons.
+
+The code is composed by two parts, the infector which will try to infect all applications it
+can find in a given path (configured at configuration.h), starting by frameworks and then
+main binary, and the library, which will decrypt and restore bytes stolen by the infector.
+
+I tried to cleanup the code and make it a bit better from the original PoC, which was a mess
+copy & pasted from many other personal projects.
+It's definitely not commercial malware grade code (and that's not my intent!) and it contains
+quite simple (and easily detected) "design" decisions. It can be improved a lot!
+
+The goal here is to show how it's done and hopefully get detection and protections developed.
+Hitcon was in July 2012 and as far as I know there's nothing implemented against this PoC.
+Maybe with some PoC code out things can change.
+
+This version only works against non-fat binaries/frameworks, either 32 or 64 bits.
+
+Enjoy,
+fG!
+
+TODO:
+- Finish LC_MAIN entrypoint code
+- Code to infect main binary if frameworks fail (only infects main in debug compile)
+
+
